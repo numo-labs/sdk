@@ -18,7 +18,7 @@ const sdk = require('numo-sdk');
  */
 
 //Execute the search
-sdk.tags.search(searchString, limit, function(err, result){
+sdk.tags.search(searchString, limit).request(function(err, result){
   
 });
 ```
