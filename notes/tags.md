@@ -3,9 +3,9 @@
 ## Index
 
 * [Search for tags](#Search-for-tags)
-* [## Search for popular tags](#Search-for-popular-tags)
+* [Search for popular tags](#Search-for-popular-tags)
 
-## Search for tags
+## [Search for tags]
 
 ```javascript
 const sdk = require('numo-sdk');
@@ -88,7 +88,7 @@ Sample responses: .on('result')
 }
 ```
 
-## Search for popular tags
+## [Search for popular tags]
 
 
 ```javascript
