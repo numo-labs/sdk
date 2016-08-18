@@ -23,7 +23,7 @@ __Lower level call__
 sdk.tags.search(searchString, limit);
 
 //Executed ones when the first search is executed (empty string or no search results)
-sdk.tags.popularSearch(searchString, limit);
+sdk.tags.popularSearch(limit);
 ```
 
 
