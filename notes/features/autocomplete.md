@@ -18,8 +18,6 @@ sdk.features.autocomplete(searchString, limit, function(err, result){});
 
 __Lower level call__ 
 
-Search for the top 10 tags related to "spa"
-
 ```javascript
 //Executed every time 
 sdk.tags.search(searchString, limit);
