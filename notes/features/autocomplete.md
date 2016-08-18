@@ -3,7 +3,7 @@
 Implements an autocomplete feature for searching for tags using a given string. 
 
 ```javascript
-const sdk = require('numo-sdk');
+const sdk = require('numo-sdk')(config);
 
 /**
  * Search for tags, times out by default in 30 sec
