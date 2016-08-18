@@ -13,7 +13,7 @@ const sdk = require('numo-sdk');
  */
 
 //Execute the search
-sdk.features.autocomplete(searchString, limit, function(err, result){});
+sdk.autocomplete(searchString, limit, function(err, result){});
 ```
 
 __Lower level call__ 
