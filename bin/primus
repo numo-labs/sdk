@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const Primus = require('primus');
+const path = require('path');
+const EventEmitter = require('events').EventEmitter;
+
+const out = fs.createWriteStream(path.resolve(__dirname, '../lib/primus.js'));
+
+const primus = new Primus(new EventEmitter(), {transformer: 'engine.io'});
+
+out.write(`/**
+ * WARNING: DO NOT EDIT
+ * code is generated automatically
+ * run ./bin/primus to regenerate
+ **/`);
+out.write('\n\n\n');
+out.write(primus.library());

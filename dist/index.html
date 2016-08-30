@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SDK Sandbox</title>
+  <script src="./index.js"></script>
+</head>
+<body>
+  <h1>SDK Sandbox</h1>
+  <h2>How to use</h2>
+  <ol>
+    <li>Open dev tools console</li>
+    <li>Enter a query in the console</li>
+    <li>Hit enter</li>
+  </ol>
+  <h2>Example query</h2>
+  <pre>
+  SDK().query({ count: 5 }, { timeout: 10 }).on('result', console.log).on('end', () => console.log('done'));
+  </pre>
+</body>
+</html>
