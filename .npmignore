@@ -1,2 +1,6 @@
 test
 notes
+lib
+sandbox
+bin
+webpack.config.js
