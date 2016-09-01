@@ -2,7 +2,7 @@
   "name": "sdk",
   "version": "0.0.0",
   "description": "numo sdk",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test:lint": "semistandard ./lib/**/*.js",
     "test:unit": "mocha ./test --recursive --require ./test/helpers/index",
@@ -23,14 +23,12 @@
   "homepage": "https://github.com/numo-labs/sdk#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "engine.io": "^1.6.11",
     "json-loader": "^0.5.4",
     "mocha": "^3.0.2",
-    "semistandard": "^8.0.0",
-    "webpack": "^1.13.2"
-  },
-  "dependencies": {
-    "engine.io": "^1.6.11",
     "primus": "^6.0.2",
-    "uuid": "^2.0.2"
+    "semistandard": "^8.0.0",
+    "uuid": "^2.0.2",
+    "webpack": "^1.13.2"
   }
 }
