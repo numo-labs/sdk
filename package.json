@@ -9,6 +9,7 @@
     "test": "npm run test:lint && npm run test:unit",
     "build:primus": "./bin/primus",
     "build:webpack": "webpack -d --config ./webpack.config.js",
+    "build:webpack:watch": "npm run build:webpack -- --watch",
     "prepublish": "npm run build:primus && npm run build:webpack"
   },
   "repository": {
