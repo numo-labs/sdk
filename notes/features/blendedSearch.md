@@ -24,8 +24,14 @@ const sdk = require('numo-sdk');
  *}
  */
 
+var q = {
+  entities : ['package','tile','hotel']
+  params : 
+}
+
+
 //Execute the search
-sdk.blendedSearch(params).on();
+sdk.search(params).on();
 ```
 
 __Lower level call__ 
