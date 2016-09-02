@@ -1,19 +1,22 @@
 const Backend = require('sdk-backend');
 
-module.exports = function (responses) {
+module.exports = function () {
+
+  const emitters = {};
+  const queues = {};
+
   const TestProvider = {
-    willHandle: () => true,
+    willHandle: (q) => {
+      // don't handle queries which have a `handle` param set to false
+      return !q || !q.params || q.params.handle !== false;
+    },
     query: (q, emit) => {
-      responses.forEach((response, i) => {
-        setTimeout(() => {
-          emit(Object.assign(response.body, { id: q.id, provider: TestProvider.name }));
-          if (i === responses.length - 1) {
-            setImmediate(() => {
-              emit({ provider: TestProvider.name, type: 'end', id: q.id });
-            });
-          }
-        }, response.delay);
-      });
+      emitters[q.id] = emit;
+      // flush any results which have been queued
+      queues[q.id] = queues[q.id] || [];
+      while (queues[q.id].length) {
+        emit(queues[q.id].shift());
+      }
     },
     name: 'test-provider'
   };
@@ -23,7 +26,7 @@ module.exports = function (responses) {
     ],
     port: 0,
     log: {
-      level: 'fatal'
+      level: process.env.LOG_LEVEL || 'fatal'
     }
   });
 
@@ -36,6 +39,16 @@ module.exports = function (responses) {
     },
     stop: function (callback) {
       backend.stop(callback);
+    },
+    emit: function (id, type, data) {
+      data = data || {};
+      data.type = type;
+      if (emitters[id]) {
+        emitters[id](data);
+      } else {
+        queues[id] = queues[id] || [];
+        queues[id].push(data);
+      }
     }
   };
 };
