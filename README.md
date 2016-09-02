@@ -100,7 +100,6 @@ Both of these build tasks will be executed as an npm prepublish hook, and so wil
 
 ### To Do
 
-* [ ] Tests
 * [ ] Implement a plugin architecture to allow extending the SDK API with custom methods.
 * [ ] Add a result-flattening method to the query response to support "traditional" callback interface - e.g. `sdk.query({/*...*/}).result((err, results) => {});`
 
