@@ -12,7 +12,7 @@ const primus = new Primus(new EventEmitter(), {transformer: 'engine.io'});
 out.write(`/**
  * WARNING: DO NOT EDIT
  * code is generated automatically
- * run ./bin/primus to regenerate
+ * run \`npm run build:primus\` to regenerate
  **/`);
 out.write('\n\n\n');
 out.write(primus.library());
