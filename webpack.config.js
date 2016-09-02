@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    javascript: './index.js'
+    javascript: './index-client.js'
   },
   output: {
     filename: 'index.js',

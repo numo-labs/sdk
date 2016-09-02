@@ -2,8 +2,12 @@
 
 ## Usage
 
+The SDK can be used in browser or in node. The interface is the same for each.
+
+In a browser:
+
 ```html
-<script src="./sdk.js"></script>
+<script src="./dist/index.js"></script>
 <script>
 SDK(/* sdk options */).query({ /* your query params */ }, { /* query options */ })
   .on('result', (result) => {
@@ -13,6 +17,19 @@ SDK(/* sdk options */).query({ /* your query params */ }, { /* query options */ 
     console.log('All done!');
   });
 </script>
+```
+
+In node:
+
+```javascript
+const SDK = require('sdk');
+SDK(/* sdk options */).query({ /* your query params */ }, { /* query options */ })
+  .on('result', (result) => {
+    console.log('Result received', result);
+  })
+  .on('end', (result) => {
+    console.log('All done!');
+  });
 ```
 
 ## Sandbox

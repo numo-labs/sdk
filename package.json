@@ -2,7 +2,7 @@
   "name": "sdk",
   "version": "0.0.0",
   "description": "numo sdk",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test:lint": "semistandard ./lib/**/*.js",
     "test:unit": "mocha ./test --recursive --require ./test/helpers/index",
