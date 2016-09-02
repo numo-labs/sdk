@@ -78,6 +78,28 @@ describe('query', () => {
       server.emit(q2.id, 'end');
     });
 
+    describe('`result` method', () => {
+
+      it('flattens result stream into an array', () => {
+        const q = sdk.query()
+          .result((err, results) => {
+            expect(err).to.be.null;
+            expect(results).to.deep.equal([
+              { result: 1 },
+              { result: 2 },
+              { result: 3 }
+            ]);
+            done();
+          });
+
+        server.emit(q.id, 'result', { data: { result: 1 } });
+        server.emit(q.id, 'result', { data: { result: 2 } });
+        server.emit(q.id, 'result', { data: { result: 3 } });
+        server.emit(q.id, 'end');
+      });
+
+    });
+
   });
 
   describe('timeouts', () => {
