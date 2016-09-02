@@ -25,6 +25,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "engine.io": "^1.6.11",
+    "engine.io-client": "^1.6.11",
     "json-loader": "^0.5.4",
     "mocha": "^3.0.2",
     "primus": "^6.0.2",
@@ -33,5 +34,6 @@
     "sinon": "^1.17.5",
     "uuid": "^2.0.2",
     "webpack": "^1.13.2"
-  }
+  },
+  "license": "MIT"
 }
