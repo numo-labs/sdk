@@ -40,6 +40,8 @@ There is a sandbox page available in `./sandbox/index.html` that can be used to 
 
 You will need a version of the [sdk-backend](https://github.com/numo-labs/sdk-backend) running to use the sandbox.
 
+Running the sdk-backend requires redis.
+
 ## Events
 
 ### `result`
