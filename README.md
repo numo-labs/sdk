@@ -43,7 +43,7 @@ All the options below can be passed to the SDK function on construction and will
 
 ### `url`
 
-'String' - The location of the backend socket server. Default: `30`.
+'String' - The location of the backend socket server. Default: `localhost:9182`.
 
 ### `timeout*`
 
