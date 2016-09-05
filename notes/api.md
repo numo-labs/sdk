@@ -1,53 +1,89 @@
 # API Design
 
-## 2016-08-18 Proposed JS query API
+# 2016-09-05
 
-Call a method on the SDK with a query object. Emits `result`, `end` and `error` events.
+## Current implementation
 
-```javascript
-const sdk = require('numo-sdk');
-sdk.search({ ... }).on('result', (result) => {
-  // a result matching query
-  console.log(result);
-}).on('end', () => {
-  // all results have been emitted, do not expect further results
-  console.log('DONE');
-}).on('error', (e) => {});
+```javascripts
+const sdk = require('sdk');
+
+sdk().query({ ... })
+  .on('result', () => {...})
+  .on('end', () => {...});
 ```
 
-Call a method on the SDK with an array of labelled queries. Emits `result`, `end` and `error` events as above, but additionally may emit namepsaced `result:<label>` events (and possibly also namespaced `end` events?).
+See [readme](../README.md) for more details
+
+## Proposals
+
+* [ ] [Provider Query Lambda](#provider-query-lambda)
+* [ ] [Chainable Query Methods](#chainable-query-methods)
+* [ ] [Subquery Methods](#subquery-methods)
+
+### Provider Query Lambda
+
+Remove the code which iterates over providers in order to ascertain which providers should be invoked for a query from the backened itself. Instead invoke an external lambda function with the query parameters and use the response value.
+
+The advantage of this is that the websocket service will not need to be reconfigured and restarted (potentially with a number of active websocket connections disrupted) in order to add additional provider services.
+
+### Chainable Query Methods
+
+As well as a basic query method, additionally support methods on the oject returned by `sdk().query()` to add further filters/parameters to the query.
+
+Example:
 
 ```javascript
-const sdk = require('numo-sdk');
-sdk.search([
-  { label: 'foo', ... },
-  { label: 'bar', ... }
-]).on('result:foo', (result) => {
-  // a result matching the `foo` query
-  console.log(result);
-}).on('result:bar', (result) => {
-  // a result matching the `bar` query
-  console.log(result);
-}).on('result', (result) => {
-  // a result matching any query
-  // this event will be fired along with the two events above
-  console.log(result);
-}).on('end', () => {
-  // all results have been emitted, do not expect further results
-  console.log('DONE');
+const sdk = require('sdk');
+
+sdk().query()
+  .limit(10)
+  .sort('price', 'asc')
+  .fields('hotelName', 'price', 'location')
+  .send()
+  .on(...);
+```
+
+Note the additional `send` function to indicate that the query is complete and can be sent to the server.
+
+Alternatively (or additionally) the query could be automatically sent asynchronously, so if `.send` has not been called explicitly then the query will be sent anyway.
+
+Example:
+
+```javascript
+setImmediate(() => {
+  if (!query.isSent) {
+    query.send();
+  }
 });
 ```
 
-## 2016-08-18 Sketch implementation
+It is not clear at this point where in the service stack the resolution of limits and sorting would be applied, so it may be that these aspects are not implemented from day 1. Initial thought is that limiting could be implemented at the websocket layer where we already track the completeness state for each provider in order to emit `end` events, and so maintaining a count would be easy to achieve. In this case, the full query pipeline would continue to execute, there would simply be no further results piped to the client. This model would support [subquery methods](#subquery-methods) as described below.
 
-When performing a query the SDK will:
+### Subquery Methods
 
-* build a fully qualified qury object as per [schema](numo-labs/schema)
-* generate a uuid for the search (possibly a uuid per query as above?)
-* emit websocket event to the api server to initiate the query
-* subscribe to a channel corresponding to the generated uuid to receive results
+Once a query has been complete, the results will be saved into an S3 bucket where appropriate (it is not expected that this will be relevant for all entity types).
 
-When complete:
+We can then provide an interface to the client to perform further filtering and indexing on the complete result set.
 
-* unsubscribe to websocket event channel
-* emit `end` event
+Examples:
+
+```javascript
+const sdk = require('sdk');
+
+const search = sdk().query({
+  tags: ['geo:spain'],
+  entities: ['hotels', 'packages']
+}).send();
+
+search.index('price', 'rating').on('result', () => {
+  // provides a breakdown of the number of results within ranges for each of the properties specified
+});
+search.filter({ price: ['100-200', '200-300'] }).on('result', () => {
+  // filters applies a filter to the existing search results, which returns only the results which fit within a set of index groups specified
+});
+search.sort('price', 'asc').range(0, 20).on('result', () => {
+  // sorts the result set and returns the first 20 results
+});
+```
+
+Note that in this case, the sorting would be performed based on an index of the full result set, so would be easier to implement than the sort decribed above.
