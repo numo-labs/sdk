@@ -63,7 +63,7 @@ It is not clear at this point where in the service stack the resolution of limit
 
 Once a query has been complete, the results will be saved into an S3 bucket where appropriate (it is not expected that this will be relevant for all entity types).
 
-We can then provide an interface to the client to perform further filtering and indexing on the complete result set.
+We can then provide an interface to the client to perform further filtering and indexing on the complete result set. These would be performed by a separate "S3 indexer" provider, which would handle queries where a "parent query" identifier was present on the query parameters. It is expected that other providers would ignore queries with a "parent query id" property.
 
 Examples:
 
