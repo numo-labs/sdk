@@ -14,7 +14,9 @@
   </ol>
   <h2>Example query</h2>
   <pre>
-  SDK().query({ count: 5 }, { timeout: 10 }).on('result', console.log).on('end', () => console.log('done'));
+  SDK().query({ entities: ['helloworld'] }).on('result', console.log).on('end', () => console.log('done'));
+
+  SDK().query({ entities: ['helloworld'], count: 5 }).on('result', console.log).on('end', () => console.log('done'));
   </pre>
 </body>
 </html>
