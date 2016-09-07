@@ -1,44 +1,47 @@
-const Backend = require('sdk-backend');
+const Primus = require('primus');
+const http = require('http');
 
 module.exports = function () {
 
   const emitters = {};
   const queues = {};
 
-  const TestProvider = {
-    willHandle: (q) => {
-      // don't handle queries which have a `handle` param set to false
-      return !q || !q.params || q.params.handle !== false;
-    },
-    query: (q, emit) => {
-      emitters[q.id] = emit;
-      // flush any results which have been queued
-      queues[q.id] = queues[q.id] || [];
-      while (queues[q.id].length) {
-        emit(queues[q.id].shift());
-      }
-    },
-    name: 'test-provider'
-  };
-  const backend = Backend({
-    providers: [
-      TestProvider
-    ],
-    port: 0,
-    log: {
-      level: process.env.LOG_LEVEL || 'fatal'
-    }
+  const server = http.createServer();
+
+  const primus = Primus(server, {
+    transformer: 'engine.io'
   });
+  primus.on('connection', (socket) => {
+    socket.on('data', (msg) => {
+      if (msg.action === 'query') {
+        msg.id = msg.room;
+        addEmitter(msg, (data) => {
+          data.id = msg.id;
+          socket.write(data);
+        });
+      }
+    });
+  });
+
+  function addEmitter (q, fn) {
+    emitters[q.id] = fn;
+    // flush any results which have been queued
+    queues[q.id] = queues[q.id] || [];
+    while (queues[q.id].length) {
+      fn(queues[q.id].shift());
+    }
+  }
 
   return {
     start: function (callback) {
-      backend.start((err, address) => {
+      server.listen(0, (err) => {
+        const address = server.address();
         const host = address.address === '::' ? 'localhost' : address.address;
         callback(err, `http://${host}:${address.port}`);
       });
     },
     stop: function (callback) {
-      backend.stop(callback);
+      server.close();
     },
     emit: function (id, type, data) {
       data = data || {};

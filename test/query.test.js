@@ -150,18 +150,17 @@ describe('query', () => {
 
   describe('errors', () => {
 
-    it('emits an error event if no providers are able to handle the query', (done) => {
-      // setting `handle` param to false will make the mock provider not handle the query
-      // see ./test/helpers/backend.js
-      const q = sdk.query({ handle: false })
+    it('emits an error event if error is sent from the backend', (done) => {
+      const q = sdk.query()
         .on('error', (e) => {
+          expect(e.message).to.equal('testerror');
           done();
         })
         .on('end', () => {
           done(new Error('should not be called'));
         });
 
-      server.emit(q.id, 'end');
+      server.emit(q.id, 'error', { data: { message: 'testerror' } });
     });
 
   });

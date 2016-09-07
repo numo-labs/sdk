@@ -29,7 +29,6 @@
     "json-loader": "^0.5.4",
     "mocha": "^3.0.2",
     "primus": "^6.0.2",
-    "sdk-backend": "github:numo-labs/sdk-backend",
     "semistandard": "^8.0.0",
     "sinon": "^1.17.5",
     "uuid": "^2.0.2",
