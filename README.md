@@ -72,6 +72,10 @@ All the options below can be passed to the SDK function on construction and will
 
 'Number' - The number of seconds to wait for a query to execute. Default: `30`.
 
+### `logLevel*`
+
+'String' - Defines how the query is logged as it passes through the query pipeline. Options: `fatal|error|info|trace`. Default: `info`.
+
 ## Query Parameters
 
 #### `entities`
