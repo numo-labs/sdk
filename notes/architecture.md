@@ -1,6 +1,6 @@
 # Architecture
 
-![https://drive.google.com/file/d/0B0zWicBAz_3Wb3NCNnlTSFBLeGM/view?usp=sharing](./sdk-rchitecture.png)
+![https://drive.google.com/file/d/0B0zWicBAz_3Wb3NCNnlTSFBLeGM/view?usp=sharing](./sdk-architecture.png)
 
 The current (as of 2016-09-07) architecture of the SDK stack is shown above.
 
