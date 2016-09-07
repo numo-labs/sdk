@@ -62,7 +62,11 @@ All the options below can be passed to the SDK function on construction and will
 
 ### `url`
 
-'String' - The location of the backend socket server. Default: `localhost:9182`.
+'String' - The location of the backend socket server. Default: `https://sdk-backend.eu-west-1.elasticbeanstalk.com/`.
+
+### `lambda`
+
+'String' - The lambda function which is used by the backend to distribute the query to providers.
 
 ### `timeout*`
 
