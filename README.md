@@ -70,7 +70,9 @@ All the options below can be passed to the SDK function on construction and will
 
 ## Query Parameters
 
-It is expected that queries will include an `entities` array, which will be a list of the result types that a query expects to receive in the response. This will be used to map the query to particular providers.
+#### `entities`
+
+`Array|String` - *required* - a string, or array of strings, defining the entity type(s) that the query is requesting.
 
 ## Development
 
