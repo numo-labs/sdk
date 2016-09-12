@@ -46,6 +46,7 @@ The following entities might be returned:
   id: '10f7c79c-3a64-4c98-a3f5-9aa7549f759a',
   mhid: '45179ch',
   name: 'Barut Akra',
+  description: '',
   flights: {
     outbound: [
       {
