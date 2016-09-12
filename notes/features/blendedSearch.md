@@ -39,18 +39,64 @@ The following entities might be returned:
 }
 ```
 
-
+``` javascript
 {
   type: 'packageOffer',
   id: '10f7c79c-3a64-4c98-a3f5-9aa7549f759a',
   mhid: '45179ch',
   name: 'Barut Akra',
- 
-
-  
-
-  
+  flights: {
+    outbound: [
+      {
+        number: "na",
+        departure: {
+          localDateTime: "2016-07-02T17:55:00",
+          airport: {
+            code: "CPH",
+            name: "Kastrup Terminal 2"
+          }
+        },
+        arrival: {
+          localDateTime: "2016-07-02T22:20:00",
+          airport: {
+            code: "AYT"
+          }
+        },
+        carrier: {
+          code: "DK"
+        }
+      }
+    ],
+    inbound: [
+      {
+        number: "na",
+        departure: {
+          localDateTime: "2016-07-30T13:30:00",
+          airport: {
+            code: "AYT",
+            name: "Antalya terminal 2"
+          }
+        },
+        arrival: {
+          localDateTime: "2016-07-30T16:05:00",
+          airport: {
+            code: "CPH"
+          }
+        },
+        carrier: {
+          code: "DK"
+        }
+      }
+    ]
+  },
+  price: {
+    total: 36298,
+    perPerson: 18149,
+    currency: "DKK",
+    discountPrice: 0
+  }
 }
+```
 
  
 
