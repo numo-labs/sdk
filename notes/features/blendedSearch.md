@@ -1,25 +1,71 @@
 # Blended Search
 
 Search for products in the backend using a set search paramers:
-* tags
-* Passenger Mix
-* Departure Date(range)
-* Duration
-* Departure Airport 
-* Board Type
-* Entities [Array] with options 'Package','Hotel', 'Tile', 'Flight', 'Filters'
+
+  * tags: a list of tags to create a candidate list
+  * Passenger Mix: the party mix going on holiday (opional)
+  * Departure Date(range): departure date, default [now, now + 3months] 
+  * Duration: duration of the holiday, default 7
+  * Departure Airport
+  * Board Type
+  * includeEntities: which entities do you want in the search (Packages, Hotel Only, Flights, ...
+  * streamEntities: which response entities would you like to have e.g. listerItem
+
+``` javascript  
+sdk().blendedSearch({
+  tags: [],
+  * Passenger Mix
+  * Departure Date(range)
+  * Duration
+  * Departure Airport 
+  * Board Type
+  * includeEntities: ['Package','Hotel','Tile','Flight']
+  * streamEntities: ['oneweb:listerItem:content',''oneweb:listerItem:price', 'oneweb:lister:filterTag']
+})
+```
+
+
 
 
 A stream of results will be retuned depending on the requested entity types. 
 The following entities might be returned:
 
+_Master hotel entity_
+
 ``` javascript
 {
-  type: 'accommodation',
+  reqId: 'ed6ea808-0d9b-4df5-a824-a8faf75e8358',
+  entityType: 'accommodation:master',
   mhid: '45179ch',
-  name: 'Barut Akra', 
+  name: 'Barut Akra',
+  lon: '36.8639057'
+  lat: '30.7237622'
+}
+```
+
+_Tripadvisor Rating Entity_
+
+``` javascript
+{
+  reqId: 'ed6ea808-0d9b-4df5-a824-a8faf75e8358',
+  entityType: 'rating:tripadvisor',
+  mhid: '45179ch',
+  rating: 4.6,
+}
+```
+
+_Hotel yield Entity_
+
+``` javascript
+{
+  reqId: 'ed6ea808-0d9b-4df5-a824-a8faf75e8358',
+  entityType: 'yield:oneweb:family',
+}
+```
+
+
+
   priorityCode: 179,
-  tripadvisorRating: 4.6,
   location: ['Antalya','Tyrkiet','Antalya-omrÃ¥det'],
   images: {
     small: [
