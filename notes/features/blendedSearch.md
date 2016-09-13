@@ -11,10 +11,10 @@ Search for products in the backend using a set search paramers:
   * includeEntities: which entities do you want in the search (Packages, Hotel Only, Flights, ...
   * streamEntities: which response entities would you like to have e.g. listerItem
 
-``` javascript  
+
 sdk().blendedSearch({
   tags: [],
-  * Passenger Mix
+  paxMix: {}
   * Departure Date(range)
   * Duration
   * Departure Airport 
@@ -22,10 +22,6 @@ sdk().blendedSearch({
   * includeEntities: ['Package','Hotel','Tile','Flight']
   * streamEntities: ['oneweb:listerItem:content',''oneweb:listerItem:price', 'oneweb:lister:filterTag']
 })
-```
-
-
-
 
 A stream of results will be retuned depending on the requested entity types. 
 The following entities might be returned:
