@@ -56,12 +56,14 @@ _Hotel yield Entity_
 {
   reqId: 'ed6ea808-0d9b-4df5-a824-a8faf75e8358',
   entityType: 'yield:oneweb:family',
+  score: '0.1343',
 }
 ```
 
+_Accommodation Content_
 
-
-  priorityCode: 179,
+``` javascript
+{
   location: ['Antalya','Tyrkiet','Antalya-omrÃ¥det'],
   images: {
     small: [
@@ -82,6 +84,7 @@ _Hotel yield Entity_
 }
 ```
 
+_Anite Offer_
 ``` javascript
 {
   type: 'packageOffer',
