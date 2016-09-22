@@ -4,17 +4,55 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Thomas Cook Search SDK by numo-labs</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
-    Testing stuff
-    <script src="javascripts/scale.fix.js"></script>
+    <div class="container">
+      <section class="header" style="margin-top: 6rem; text-align: center">
+        <h2>Thomas Cook Search SDK</h2>
+      </section>
+      <div class="navbar-spacer"></div>
+      <div class="navbar">
+        <div class="container">
+          <ul class="navbar-list">
+            <li class="navbar-item"><a href="#" class="navbar-link">Autocomplete</a></li>
+            <li class="navbar-item"><a href="#" class="navbar-link">Search</a></li>
+          </ul>
+        </div>
+      </div>
 
+      <div style="margin-top: 4rem">
+
+
+      <h3>Autocomplete</h3>
+
+      <p>
+        Implements an autocomplete feature for searching for tags using a given string.
+      </p>
+
+      <h5>Example</h5>
+        <pre><code>
+const sdk = require('numo-sdk')(config);
+
+/**
+ * Search for tags, times out by default in 30 sec
+ * @param searchString String used for searching for tags
+ * @param limit max items to be returned, default 10
+ * @param callback
+ */
+
+//Execute the search
+sdk.autocomplete(searchString, limit, function(err, result){});
+        </code></pre>
+
+      </div>
+    </div>
   </body>
 </html>
