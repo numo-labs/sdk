@@ -28,24 +28,75 @@
       </div>
 
       <h3>Autocomplete</h3>
-
       <p>
-        Implements an autocomplete feature for searching for tags using a given string.
+        <i>Implements an autocomplete feature to search for tags using a given string.</i>
+      </p>
+      <p>
+        <code>
+          sdk.autocomplete(&lt;reference&gt;).for(&lt;searchstring&gt;)
+        </code>
       </p>
 
-      <h5>Example</h5>
+      <p>
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>keyword</th>
+              <th>type</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>reference</td>
+              <td>string</td>
+              <td>The entity you want to autocomplete. E.g. destination</td>
+            </tr>
+            <tr>
+              <td>searchstring</td>
+              <td>string</td>
+              <td>The partial world you want to autocomplete</td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+
+      <div class="">
+
+      </div>
+      <h5>Destination</h5>
+      <p>
+        The destination autocomplete allows you to get a list of destinations based on a partial destination name.
+        <br><br>
+        You can acquire a reference to the <i>destination</i> autocomplete by passing in <strong>destination</strong> as the <i>reference</i> string.
+        <code>sdk.autocomplete('destination');</code>
+      </p>
+      <div class="divider" />
+
+
+      <h6>Example</h6>
         <pre><code>
-const sdk = require('numo-sdk')(config);
+const autocomplete = sdk.autocomplete('destination');
 
-/**
- * Search for tags, times out by default in 30 sec
- * @param searchString String used for searching for tags
- * @param limit max items to be returned, default 10
- * @param callback
- */
+autocomplete.for('spa', function(err, result) {});
+        </code></pre>
 
-//Execute the search
-sdk.autocomplete(searchString, limit, function(err, result){});
+        <div class="divider" />
+
+      <h5>Departure airport</h5>
+      <p>
+        The departure arport autocomplete allows you to get a list of airports based on a partial airport name.
+        <br><br>
+        You can acquire a reference to the <i>departure airport</i> autocomplete by passing in <strong>departure_airport</strong> as the <i>reference</i> string.
+        <code>sdk.autocomplete('departure_airport');</code>
+      </p>
+      <div class="divider">
+
+      <h6>Example</h6>
+        <pre><code>
+const autocomplete = sdk.autocomplete('departure_airport');
+
+autocomplete.for('Lon', function(err, result) {});
         </code></pre>
 
       </div>
