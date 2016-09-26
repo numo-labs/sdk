@@ -20,14 +20,31 @@
       </section>
       <div class="divider">
       <nav>
-        <a class="button button-primary" href="#">Autocomplete</a>
+        <a class="button button-primary" href="#gettingstarted">Getting started</a>
+        <a class="button button-primary" href="#autocomplete">Autocomplete</a>
         <a class="button button-primary" href="#">Search</a>
       </nav>
       <div class="divider">
 
       </div>
 
-      <h3>Autocomplete</h3>
+      <h3 id="gettingstarted">Getting started</h3>
+      <h5>Initialization</h5>
+      <p>
+        In order to start using the SDK it's required to initialice it. To do that just invoke the <i>init</i> method indicating the market you are working on.
+        <br/>
+        <i>Current unique market value: uk</i>
+        <br/>
+        <p>
+        <code>
+          sdk.init('uk');
+        </code>
+        </p>
+        <br/>
+        This will download a config file which contains the configuration data for the specific market. 
+      </p>
+
+      <h3 id="autocomplete">Autocomplete</h3>
       <h5>Destination</h5>
       <p>
         The destination autocomplete allows you to get a list of destinations based on a partial destination name.
