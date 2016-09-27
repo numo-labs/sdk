@@ -1,0 +1,31 @@
+{
+  "name": "fsearch-sdk",
+  "version": "0.1.0",
+  "description": "Federated Search SDK. ",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha tests --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numo-labs/sdk.git"
+  },
+  "keywords": [
+    "Federated",
+    "Search",
+    "SDK"
+  ],
+  "author": "Team Awesome",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/numo-labs/sdk/issues"
+  },
+  "homepage": "https://github.com/numo-labs/sdk#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0"
+  }
+}
