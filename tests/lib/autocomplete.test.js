@@ -16,6 +16,12 @@ describe('Autocomplete', function () {
         });
     });
     describe('Destination', function () {
-
+        it('Should filter destination airports based on the input and the departure airport ', function (done) {
+            var autoComplete = autocomplete('destination', ukConfig);
+            autoComplete.for('Islan', 'London City', function (elements) {
+                expect(elements).to.deep.equal(['Balearic Islands']);
+                done();
+            });
+        });
     });
 });
