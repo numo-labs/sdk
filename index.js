@@ -7,6 +7,10 @@ var markets = {
     uk: require('./uk-config.json')
 };
 
+/**
+ * SDK prototype 
+ * 
+ */
 var SDK = function () {
     this.config = null;
     this.configMarket = function (market) {
@@ -17,12 +21,15 @@ var SDK = function () {
     }
 }
 
-
+// SDK instance variable
 var sdk;
 
 /**
- * Creates a SDK instance if there is no one currently instanciated.
- * @params
+ * Creates a SDK instance if there is no one currently instanciated. If there is 
+ * already one, it will just change the market configuration.
+ * 
+ * @param {string} market
+ * @returns
  */
 function init(market) {
     if(!sdk) {
@@ -32,7 +39,8 @@ function init(market) {
     return sdk;
 };
 
+
 /**
- * Exposed interface
+ * Public interface
  */
-module.exports = {init};
+module.exports = { init };
