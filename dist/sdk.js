@@ -1,4 +1,37 @@
-{
+'use strict';
+
+var config;
+function autocomplete (context, cfg) {
+    config = cfg;
+    return _autocomplete[context];
+}
+var _autocomplete = {
+    departure_airport: {
+        for: function (input, callback) {
+            var results = Object.keys(config.departureAirports)
+                            .filter(function (item, idx) {
+                                return item.indexOf(input) >= 0;
+                            });
+            return callback(null, results);
+        }
+    },
+    destination: {
+        for: function(input, departure_airport, callback) {
+            try{
+                var destinations = config.departureAirports[departure_airport].avail_dest;
+                var results = [];
+                destinations.forEach(function (item) {
+                    if(item.displayName.indexOf(input) >= 0) results.push(item.displayName);
+                });
+            } catch(err) {
+                var error = err;
+            }
+            return callback(error || null, results);
+        }
+    }
+};
+
+var ukConfig = {
     "departureAirports": {
         "Any London":{
             "airportCode": "whatever",
@@ -14,7 +47,7 @@
                 {
                     "displayName": "Barbados",
                     "airportCode": "whatever"
-                }, 
+                },
                 {
                     "displayName": "Bulgaria",
                     "airportCode": "whatever"
@@ -54,15 +87,15 @@
                 {
                     "airportCode": "whatever",
                     "displayName": "Goa"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "Greece"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "Italy"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "Lapland"
@@ -90,7 +123,7 @@
                 {
                     "airportCode": "whatever",
                     "displayName": "Portugal"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "Spain"
@@ -106,7 +139,7 @@
                 {
                     "airportCode": "whatever",
                     "displayName": "Turkey"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "USA"
@@ -155,11 +188,11 @@
                 {
                     "airportCode": "whatever",
                     "displayName": "Greece"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "Italy"
-                }, 
+                },
                 {
                     "airportCode": "whatever",
                     "displayName": "Lapland"
@@ -674,7 +707,6 @@
                     "airportCode": "whatever",
                     "displayName": "Cape Verde"
                 },
-                
                 {
                     "airportCode": "whatever",
                     "displayName": "Cyprus"
@@ -736,7 +768,7 @@
                     "displayName": "USA"
                 }
             ]
-        }, 
+        },
         "Aberdeen": {
             "airportCode": "whatever",
             "avail_dest": [
@@ -1885,3 +1917,29 @@
         }
     }
 }
+
+var ukMarket = Object.freeze({
+	default: ukConfig
+});
+
+var markets = {
+    uk: ukMarket
+};
+var SDK = function () {
+    this.config = null;
+    this.configMarket = function (market) {
+        this.config = markets[market] || null;
+    };
+    this.autocomplete = function(context) {
+        return autocomplete(context, this.config);
+    }
+}
+var sdk;
+function init(market) {
+    if(!sdk) {
+        sdk = new SDK();
+    }
+    sdk.configMarket(market);
+    return sdk;
+}
+module.exports = { init };

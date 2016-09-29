@@ -1,10 +1,11 @@
 
 'use strict';
 
-var autocomplete = require('./lib/autocomplete');
+import autocomplete from './lib/autocomplete';
+import * as ukMarket from './uk-config.js'
 
 var markets = {
-    uk: require('./uk-config.json')
+    uk: ukMarket
 };
 
 /**
