@@ -1922,24 +1922,27 @@ var ukMarket = Object.freeze({
 	default: ukConfig
 });
 
-var markets = {
-    uk: ukMarket
-};
-var SDK = function () {
-    this.config = null;
-    this.configMarket = function (market) {
-        this.config = markets[market] || null;
+var SDK = (function () {
+    var markets = {
+        uk: ukMarket
     };
-    this.autocomplete = function(context) {
-        return autocomplete(context, this.config);
+    var SDK = function () {
+        this.config = null;
+        this.configMarket = function (market) {
+            this.config = markets[market] || null;
+        };
+        this.autocomplete = function(context) {
+            return autocomplete(context, this.config);
+        }
     }
-}
-var sdk;
-function init(market) {
-    if(!sdk) {
-        sdk = new SDK();
+    var sdk;
+    function init(market) {
+        if(!sdk) {
+            sdk = new SDK();
+        }
+        sdk.configMarket(market);
+        return sdk;
     }
-    sdk.configMarket(market);
-    return sdk;
-}
-module.exports = { init };
+    return { init };
+})()
+module.exports = SDK;

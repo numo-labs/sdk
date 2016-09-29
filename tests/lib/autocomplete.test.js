@@ -1,44 +1,32 @@
 
 'use strict';
+var test = require('tape');
+import autocomplete from '../../lib/autocomplete';
+import ukConfig from '../../uk-config';
 
-var expect = require('chai').expect;
-var autocomplete = require('../../lib/autocomplete');
-var ukConfig = require('../../uk-config.json');
-
-describe('Autocomplete', function () {
-    describe('Departure airport', function () {
+test('Autocomplete', function (t) {
+    t.plan(2);
+    t.test('Departure airport', function (st) {
+        st.plan(4);
         var autoComplete = autocomplete('departure_airport', ukConfig);
-        it('Should filter departure airports based on the input ', function (done) {
-            autoComplete.for('City', function (err, elements) {
-                expect(err).to.be.null;
-                expect(elements).to.deep.equal(['London City']);
-                done();
-            });
+        autoComplete.for('City', function (err, elements) {
+            st.equal(err, null, 'Should not return an error');
+            st.deepEqual(elements, ['London City'], 'Should filter departure airports based on the input ');
         });
-        
-        it('Should return an empty array if there is no matches ', function (done) {
-            autoComplete.for('no matches input', function (err, elements) {
-                expect(err).to.be.null;
-                expect(elements).to.deep.equal([]);
-                done();
-            });
+        autoComplete.for('no matches input', function (err, elements) {
+            st.equal(err, null, 'not return and error ');
+            st.deepEqual(elements, [], 'Should return an empty array if there is no matches ');
         });
-
     });
-    describe('Destination', function () {
+    t.test('Destination', function (st) {
+        st.plan(3);
         var autoComplete = autocomplete('destination', ukConfig);
-        it('Should filter destination airports based on the input and the departure airport ', function (done) {
-            autoComplete.for('Islan', 'London City', function (err, elements) {
-                expect(err).to.be.null;
-                expect(elements).to.deep.equal(['Balearic Islands']);
-                done();
-            });
+        autoComplete.for('Islan', 'London City', function (err, elements) {
+            st.equal(err, null, 'Should not return an error if departure airport is valid');
+            st.deepEqual(elements, ['Balearic Islands'], 'Should filter destination airports based on the input and the departure airport ');
         });
-        it('Should return an error if departure airport is not valid', function (done) {
-            autoComplete.for('London', 'Unexistent departure airport', function (err) {
-                expect(err).not.to.be.null;
-                done();
-            });
+        autoComplete.for('London', 'Unexistent departure airport', function (err) {
+            st.notEqual(err, null, 'Should return an error if departure airport is not valid');
         });
     });
 });
