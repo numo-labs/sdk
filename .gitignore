@@ -38,3 +38,5 @@ jspm_packages
 
 # Jetbrains IDEs files
 .idea
+
+dist

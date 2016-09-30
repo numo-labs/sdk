@@ -1,4 +1,6 @@
-export default {
+'use strict';
+
+export const ukConfig = {
     "departureAirports": {
         "Any London":{
             "airportCode": "whatever",
@@ -1884,4 +1886,4 @@ export default {
             ]
         }
     }
-}
+};

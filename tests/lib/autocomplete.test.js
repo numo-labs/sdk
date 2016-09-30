@@ -2,7 +2,7 @@
 'use strict';
 var test = require('tape');
 import autocomplete from '../../lib/autocomplete';
-import ukConfig from '../../uk-config';
+import {ukConfig} from '../../uk-config';
 
 test('Autocomplete', function (t) {
     t.plan(2);
