@@ -11,7 +11,7 @@ import {ukConfig} from './uk-config.js';
         // like Node.
         module.exports = factory(autocomplete, ukConfig);
     } else {
-        // Browser globals (root is window)
+        // Browser globals
         window.SDK = factory(autocomplete, ukConfig);
     }
 }(function (autocomplete, ukConfig) {
@@ -63,7 +63,5 @@ import {ukConfig} from './uk-config.js';
         return { init: init };
     })();
     // Just return a value to define the module export.
-    // This example returns an object, but the module
-    // can return a function as the exported value.
     return SDK;
 }));
