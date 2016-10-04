@@ -3,7 +3,7 @@
 
 ## Documentation 
 
-[Found here](https://numo-labs.github.io/sdk/)
+[Found here](https://numo-labs.github.io/sdk-documentation)
 
 ## Design Notes
 
