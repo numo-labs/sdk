@@ -1,5 +1,6 @@
 # search-sdk
 
+Bundle size: 24.8kB
 
 ## Documentation 
 
