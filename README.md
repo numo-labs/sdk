@@ -1,5 +1,6 @@
 # search-sdk
 
+Bundle size: 23.3kB (dist/sdk.js)
 
 ## Documentation 
 
