@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "node_modules/.bin/tape -r babel-register tests/*.js tests/**/*.js | node_modules/.bin/tap-spec",
-    "build": "node_modules/rollup/bin/rollup -c"
+    "build": "node_modules/.bin/browserify index.js -t [babelify] -s SDK | uglifyjs > dist/sdk.js"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,11 @@
   "homepage": "https://github.com/numo-labs/sdk#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.16.0",
-    "babel-register": "^6.16.0",
-    "rollup": "^0.36.1",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-plugin-cleanup": "^0.1.4",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "uglifyjs": "^2.4.10"
   },
   "dependencies": {}
 }
