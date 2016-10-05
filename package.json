@@ -1,0 +1,38 @@
+{
+  "name": "sdk",
+  "version": "0.0.0",
+  "description": "numo sdk",
+  "main": "index.js",
+  "scripts": {
+    "test:lint": "semistandard ./lib/**/*.js",
+    "test:unit": "mocha ./test --recursive --require ./test/helpers/index",
+    "test": "npm run test:lint && npm run test:unit",
+    "build": "npm run build:primus && npm run build:webpack",
+    "build:primus": "./bin/primus",
+    "build:webpack": "webpack -d --config ./webpack.config.js",
+    "build:webpack:watch": "npm run build:webpack -- --watch",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numo-labs/sdk.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/numo-labs/sdk/issues"
+  },
+  "homepage": "https://github.com/numo-labs/sdk#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "engine.io": "^1.6.11",
+    "engine.io-client": "^1.6.11",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.0.2",
+    "primus": "^6.0.2",
+    "semistandard": "^8.0.0",
+    "sinon": "^1.17.5",
+    "uuid": "^2.0.2",
+    "webpack": "^1.13.2"
+  },
+  "license": "MIT"
+}
