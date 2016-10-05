@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "6"
+script:
+  # Build the sdk for the browser
+  - npm run build
+deploy:
+  on:
+    branch: release
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: 
+  skip_cleanup: true
+  local_dir: dist    
