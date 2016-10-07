@@ -14,6 +14,11 @@ var config;
  * @property {string} departureAirports.<name>.avail_dest[i].aiportCode
  */
 
+interface Config {
+    departureAirports: any
+}
+
+
 /**
  * Interface that wrapps all the autcomplete contexts. 
  * 
@@ -21,7 +26,7 @@ var config;
  * @param {Config} cfg
  * @returns
  */
-function autocomplete (context, cfg) {
+function autocomplete (context: string, cfg: Config) {
     config = cfg;
     return _autocomplete[context];
 }
@@ -40,7 +45,7 @@ var _autocomplete = {
          * @param {string} input
          * @param {function} callback
          */
-        for: function (input, callback) {
+        for: function (input: string, callback: Function) {
             var results = Object.keys(config.departureAirports)
                             .filter(function (item, idx) {
                                 return item.toLowerCase().indexOf(input.toLowerCase()) >= 0;
@@ -58,7 +63,7 @@ var _autocomplete = {
          * @param {string} input
          * @param {function} callback
          */
-        for: function(input, departure_airport, callback) {
+        for: function(input: string, departure_airport: string, callback: Function) {
             try{
                 var destinations = config.departureAirports[departure_airport].avail_dest;            
                 var results = [];

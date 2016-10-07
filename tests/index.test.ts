@@ -1,8 +1,8 @@
 
 'use strict';
+declare var require:(moduleId:string) => any;
 var test = require('tape');
-var SDK = require('../index');
-
+import SDK from '../src/index';
 test('SDK', function (t) {
     t.plan(4);
     var sdk1 = SDK.init('uk');

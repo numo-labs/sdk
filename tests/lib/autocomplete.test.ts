@@ -1,8 +1,9 @@
 
 'use strict';
+declare var require:(moduleId:string) => any;
 var test = require('tape');
-import autocomplete from '../../lib/autocomplete';
-import {ukConfig} from '../../uk-config';
+import autocomplete from '../../src/lib/autocomplete';
+import {ukConfig} from '../../src/uk-config';
 
 test('Autocomplete', function (t) {
     t.plan(2);

@@ -1,7 +1,8 @@
 'use strict';
-exports.ukConfig = {
+
+export const ukConfig = {
     "departureAirports": {
-        "Any London": {
+        "Any London":{
             "airportCode": "whatever",
             "avail_dest": [
                 {
@@ -15,7 +16,7 @@ exports.ukConfig = {
                 {
                     "displayName": "Barbados",
                     "airportCode": "whatever"
-                },
+                }, 
                 {
                     "displayName": "Bulgaria",
                     "airportCode": "whatever"
@@ -55,15 +56,15 @@ exports.ukConfig = {
                 {
                     "airportCode": "whatever",
                     "displayName": "Goa"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "Greece"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "Italy"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "Lapland"
@@ -91,7 +92,7 @@ exports.ukConfig = {
                 {
                     "airportCode": "whatever",
                     "displayName": "Portugal"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "Spain"
@@ -107,7 +108,7 @@ exports.ukConfig = {
                 {
                     "airportCode": "whatever",
                     "displayName": "Turkey"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "USA"
@@ -156,11 +157,11 @@ exports.ukConfig = {
                 {
                     "airportCode": "whatever",
                     "displayName": "Greece"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "Italy"
-                },
+                }, 
                 {
                     "airportCode": "whatever",
                     "displayName": "Lapland"
@@ -675,6 +676,7 @@ exports.ukConfig = {
                     "airportCode": "whatever",
                     "displayName": "Cape Verde"
                 },
+                
                 {
                     "airportCode": "whatever",
                     "displayName": "Cyprus"
@@ -736,7 +738,7 @@ exports.ukConfig = {
                     "displayName": "USA"
                 }
             ]
-        },
+        }, 
         "Aberdeen": {
             "airportCode": "whatever",
             "avail_dest": [
