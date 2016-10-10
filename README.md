@@ -1,6 +1,14 @@
 # search-sdk
 
-Bundle size: 23.3kB (dist/sdk.js)
+Getting started: 
+
+```sh
+    git clone https://github.com/numo-labs/sdk.git
+    git checkout typescript
+    npm i
+    npm t
+```
+
 
 ## Documentation 
 

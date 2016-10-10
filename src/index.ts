@@ -1,15 +1,15 @@
 "use strict";
-import autocomplete from './lib/autocomplete';
+import autocomplete, {Autocomplete} from './lib/autocomplete';
 import {ukConfig} from './uk-config';
 
-interface SDKprototype {
+export interface SDKprototype {
     config: any;
-    configMarket: any;
-    autocomplete: any;
+    configMarket(market: string): any;
+    autocomplete(context: string): Autocomplete;
 }
 
-interface SDK {
-    init: Function;
+export interface SDK {
+    init(market: string): SDKprototype;
 }
 
 var SDK = (function (): SDK {
@@ -26,7 +26,7 @@ var SDK = (function (): SDK {
         this.configMarket = function (market: string) {
             this.config = markets[market] || null;
         };
-        this.autocomplete = function(context: string) {
+        this.autocomplete = function(context: string): Autocomplete {
             return autocomplete(context, this.config);
         }
     };
